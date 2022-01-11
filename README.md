@@ -1,3 +1,5 @@
+This is a tweaked version of the original script by WazeHell that will automatically delete the machine account after exploitation.
+
 Exploiting CVE-2021-42278 and CVE-2021-42287 to impersonate DA from standard domain user 
 
 [![asciicast](https://asciinema.org/a/SnQ66XtmZLzXZQ8QwWwAYs8Dm.svg)](https://asciinema.org/a/SnQ66XtmZLzXZQ8QwWwAYs8Dm)
